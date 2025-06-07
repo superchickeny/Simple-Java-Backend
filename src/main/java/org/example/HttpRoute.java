@@ -24,4 +24,15 @@ public interface HttpRoute {
         System.out.println(method + " Received " + route.getPath());
     }
 
+    static void sendResponse(HttpExchange exchange, int http_code, String res){
+
+        exchange.getResponseHeaders().set("Content-Type", "application/json; charset=UTF-8");
+        try (OutputStream output = exchange.getResponseBody()) {
+            exchange.sendResponseHeaders(http_code, res.getBytes().length);
+            output.write(res.getBytes());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
 }
