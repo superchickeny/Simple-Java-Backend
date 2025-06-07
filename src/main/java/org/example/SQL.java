@@ -14,7 +14,7 @@ public class SQL {
 
     private void connect(){
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://edb-do-user-18883714-0.g.db.ondigitalocean.com:25060/forum", "doadmin", "AVNS_CanpIkh-jGh4zZ2b6RI");
+            connection = DriverManager.getConnection(Util.dotenv.get("DB_HOST"), Util.dotenv.get("DB_USER"), Util.dotenv.get("DB_PASS"));
             System.out.println("Connection successful");
         }catch (Exception e){
             System.out.println(e.getMessage());
